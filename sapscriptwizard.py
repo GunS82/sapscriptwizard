@@ -1,4 +1,5 @@
 # File: sapscriptwizard/sapscriptwizard.py
+"""High level interface to the SAP GUI scripting COM API."""
 
 import time
 import atexit

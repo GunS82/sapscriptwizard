@@ -1,4 +1,5 @@
 # Файл: sapscriptwizard/gui_tree.py
+"""Wrapper around the SAP GuiTree control"""
 import win32com.client
 from typing import List, Optional, Any, Tuple # Добавим Any для _com_object
 import time # Для возможных задержек

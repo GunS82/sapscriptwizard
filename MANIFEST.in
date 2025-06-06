@@ -1,0 +1,5 @@
+include README.md
+include setup.py
+recursive-include types_ *.py
+recursive-include utils *.py
+recursive-include parallel *.py

@@ -33,6 +33,16 @@ sap = Sapscript()
 - types_/
 - utils/
 - parallel/
+## KeyValue Clipboard Helper
+
+В файле `temp.py` находится простое приложение на Tkinter. Оно читает пары `ключ-значение` из `key_value_data.json` и копирует значения в буфер обмена. Запустить приложение можно командой:
+
+```bash
+python temp.py
+```
+
+Используйте сочетание `Ctrl+Shift+C` или иконку в трее, чтобы показать или скрыть окно.
+
 
 ## Лицензия
 MIT

@@ -1,3 +1,4 @@
+"""Helper dataclasses and functions for locating SAP GUI elements."""
 import math
 from typing import Optional, List, Tuple
 from dataclasses import dataclass, field

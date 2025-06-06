@@ -1,5 +1,9 @@
 # === Казахстан BEGIN ========================================================
 # Main clipboard helper application with tray icon and hotkey
+"""
+Small Tkinter clipboard helper that maps keys to values.
+Run `python temp.py` to launch the GUI, then use Ctrl+Shift+C to show or hide the window.
+"""
 
 import tkinter as tk
 import tkinter.messagebox as messagebox
@@ -12,6 +16,10 @@ import sys
 import os
 
 class KeyValueApp:
+    """Clipboard helper with tray icon.
+    Buttons copy values from ``key_value_data.json`` to the clipboard.
+    Start the application with ``python temp.py``.
+    """
     def __init__(self, root):
         self.root = root
         self.root.title("Key/Value Clipboard Helper")

@@ -19,6 +19,7 @@ except ImportError:
 from . import window # Use relative import if window.py is in the same directory/package
 from .utils import utils
 from .types_ import exceptions
+from .run_history import RunHistory
 
 # --- Logger for this module ---
 log = logging.getLogger(__name__)
@@ -30,7 +31,12 @@ class Sapscript:
     Handles launching SAP, attaching to sessions, managing windows,
     and providing access to GUI elements.
     """
-    def __init__(self, default_window_title: str = "SAP Easy Access") -> None:
+    def __init__(
+        self,
+        default_window_title: str = "SAP Easy Access",
+        *,
+        run_history: Optional[RunHistory] = None,
+    ) -> None:
         """
         Initializes the Sapscript object.
 
@@ -43,6 +49,8 @@ class Sapscript:
         # --- Screenshot Attributes ---
         self._screenshots_on_error_enabled: bool = True # Enabled by default
         self._screenshot_directory: Optional[Path] = None # Default to current dir
+        self.run_history = run_history
+        self._current_run_id: Optional[int] = None
         # --- History Attribute (managed by methods) ---
         # self._manage_history = False # Example if we wanted auto-management
 
@@ -624,11 +632,52 @@ class Sapscript:
         # Log the exception regardless of screenshot setting
         log.error(f"Handling exception: {type(exception).__name__}: {exception}", exc_info=True) # Add stack trace to log
 
+        screenshot_path = None
         if self._screenshots_on_error_enabled:
             log.info("Taking screenshot because screenshots_on_error is enabled.")
-            self._take_screenshot(filename_prefix=filename_prefix)
+            screenshot = self._take_screenshot(filename_prefix=filename_prefix)
+            if screenshot:
+                screenshot_path = str(screenshot)
         else:
             log.info("Screenshot on error is disabled, skipping capture.")
+
+        if self.run_history and self._current_run_id is not None:
+            self.run_history.finish_run(
+                self._current_run_id,
+                status="error",
+                error_message=str(exception),
+                screenshot_path=screenshot_path or "",
+            )
+            self._current_run_id = None
+
+    # --- Run History Methods ---
+
+    def start_run(self, script_name: str) -> int:
+        """Register start of a script execution in run history."""
+        if not self.run_history:
+            return -1
+        run_id = self.run_history.start_run(script_name)
+        self._current_run_id = run_id
+        return run_id
+
+    def finish_run(
+        self,
+        run_id: int,
+        status: str,
+        error_message: str = "",
+        screenshot_path: str = "",
+        log_file: str = "",
+    ) -> None:
+        """Finalize a run in the history database."""
+        if self.run_history:
+            self.run_history.finish_run(
+                run_id,
+                status=status,
+                error_message=error_message,
+                screenshot_path=screenshot_path,
+                log_file=log_file,
+            )
+        self._current_run_id = None
 
     # --- HistoryEnabled Methods ---
 

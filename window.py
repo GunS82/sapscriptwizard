@@ -12,35 +12,36 @@ import win32com.client
 from sapscriptwizard.types_ import exceptions
 from sapscriptwizard.types_.types import NavigateAction
 from sapscriptwizard.shell_table import ShellTable
-# --- НОВЫЙ КОД ---
-from sapscriptwizard.gui_tree import GuiTree # Импорт класса GuiTree
-# --- КОНЕЦ НОВОГО КОДА ---
+from sapscriptwizard.gui_tree import GuiTree
 try:
     import yaml
 except ImportError:
     yaml = None
-from .element_finder import SapElementFinder, DEFAULT_TARGET_TYPES
+try:
+    from sapscriptwizard_semantic.element_finder import SapElementFinder, DEFAULT_TARGET_TYPES
+except Exception:  # plugin not installed
+    SapElementFinder = None  # type: ignore
+    DEFAULT_TARGET_TYPES: List[str] = []
 
 
 log = logging.getLogger(__name__)
 
 class Window:
-    # --- ИЗМЕНЕНИЕ: Добавлен application в __init__ ---
     def __init__(
         self,
-        application: win32com.client.CDispatch, # Объект ScriptingEngine
+        application: win32com.client.CDispatch,
         connection: int,
         connection_handle: win32com.client.CDispatch,
         session: int,
         session_handle: win32com.client.CDispatch,
+        element_finder: Optional[Any] = None,
     ) -> None:
-        self.application = application # Сохраняем application
-        # --- КОНЕЦ ИЗМЕНЕНИЯ ---
+        self.application = application
         self.connection = connection
         self.connection_handle = connection_handle
         self.session = session
         self.session_handle = session_handle
-        self._finder = SapElementFinder(self.session_handle)
+        self._finder = element_finder
 
     def __repr__(self) -> str:
         return f"Window(connection={self.connection}, session={self.session})"
@@ -1227,12 +1228,13 @@ class Window:
         Returns:
             ID найденного элемента или None, если не найден.
         """
+        if not self._finder:
+            raise RuntimeError("Semantic locator support is not enabled. Pass a SapElementFinder instance when creating Window.")
         try:
-             # Finder сам обновит кэш, если нужно
-             return self._finder.find_element(locator_str, target_element_types)
+            return self._finder.find_element(locator_str, target_element_types)
         except exceptions.SapGuiComException as e:
-             log.error(f"Error during element finding process: {e}")
-             return None # При ошибке возвращаем None
+            log.error(f"Error during element finding process: {e}")
+            return None
 
     def press_by_locator(self, locator_str: str, target_element_types: Optional[List[str]] = ["GuiButton", "GuiTab"]) -> None:
         """ Finds element by *semantic locator* and presses it. """

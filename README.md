@@ -16,6 +16,16 @@ sap = Sapscript()
 # ... дальнейшая работа с SAP GUI
 ```
 
+### Подключение семантических локаторов
+
+```python
+from sapscriptwizard import Window
+from sapscriptwizard_semantic.element_finder import SapElementFinder
+
+win = Window(app, 0, conn_handle, 0, sess_handle,
+             element_finder=SapElementFinder(sess_handle))
+```
+
 ## Требования
 - Python 3.8+
 - pywin32
@@ -28,8 +38,7 @@ sap = Sapscript()
 - window.py
 - shell_table.py
 - gui_tree.py
-- element_finder.py
-- locator_helpers.py
+- sapscriptwizard_semantic/ (optional plugin with `SapElementFinder`)
 - types_/
 - utils/
 - parallel/

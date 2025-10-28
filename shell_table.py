@@ -1,4 +1,3 @@
-"""Abstraction over SAP shell tables (ALV grid)"""
 from typing import Self, Any, ClassVar, overload, Union, Dict, List # Добавлено Union
 # --- НОВЫЙ КОД ---
 from pathlib import Path # Добавлено для to_csv

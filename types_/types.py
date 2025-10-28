@@ -1,4 +1,3 @@
-"""Typed enums and data structures for the project."""
 from enum import Enum
 
 

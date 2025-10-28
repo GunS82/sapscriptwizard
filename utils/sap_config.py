@@ -1,5 +1,4 @@
 # --- НОВЫЙ ФАЙЛ: pysapscript\utils\sap_config.py ---
-"""Utilities for reading saplogon.ini configuration files."""
 import configparser
 import os
 from pathlib import Path

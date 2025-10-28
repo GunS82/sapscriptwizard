@@ -1,5 +1,4 @@
 # File: pysapscript/parallel/api.py
-"""Public API helpers for running SAP tasks in parallel."""
 
 import logging
 import sys

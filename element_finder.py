@@ -1,6 +1,5 @@
 # --- START OF FILE: pysapscript/element_finder.py ---
 # (This is a new file)
-"""Finds SAP GUI elements using label and position heuristics."""
 import win32com.client
 import logging
 import time

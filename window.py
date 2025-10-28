@@ -1,4 +1,3 @@
-"""High level wrapper around a SAP GUI window."""
 import pprint # Для dump_element_state
 import json
 import time

@@ -1,5 +1,4 @@
 # File: pysapscript/parallel/runner.py
-"""Worker process used by run_parallel to drive SAP sessions."""
 
 import multiprocessing
 import time

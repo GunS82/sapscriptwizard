@@ -16,14 +16,12 @@ setup(
     project_urls={
         "Homepage": "https://github.com/GunS82/sapscriptwizard",
     },
-    packages=find_packages(include=["sapscriptwizard", "sapscriptwizard.*"]),
+    packages=find_packages(include=["sapscriptwizard", "sapscriptwizard.*", "sapscriptwizard_semantic", "sapscriptwizard_semantic.*"]),
     py_modules=[
         "sapscriptwizard",
         "window",
         "shell_table",
-        "gui_tree",
-        "element_finder",
-        "locator_helpers"
+        "gui_tree"
     ],
     package_dir={"": "."},
     install_requires=[

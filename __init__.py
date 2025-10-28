@@ -1,13 +1,12 @@
 """
-.. include:: ../README.md
+SAP GUI automation library.
 """
 
 from .sapscriptwizard import Sapscript
 from .window import Window
 from .shell_table import ShellTable
-# --- НОВЫЙ КОД ---
-from .gui_tree import GuiTree # Добавляем импорт нового класса
-# --- КОНЕЦ НОВОГО КОДА ---
+from .gui_tree import GuiTree
 from .types_.types import NavigateAction
 from .types_ import exceptions
 from .parallel import run_parallel, SapParallelRunner
+

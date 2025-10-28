@@ -14,8 +14,8 @@
 6.  [API Reference](#6-api-reference)
     *   [`sapscriptwizard.Sapscript`](#class-sapscriptwizardsapscript)
     *   [`sapscriptwizard.Window`](#class-sapscriptwizardwindow)
-    *   [`sapscriptwizard.element_finder.SapElementFinder`](#class-sapscriptwizardelement_findersapelementfinder)
-    *   [`sapscriptwizard.locator_helpers`](#module-sapscriptwizardlocator_helpers)
+    *   [`sapscriptwizard_semantic.element_finder.SapElementFinder`](#class-sapscriptwizard_semanticelement_findersapelementfinder)
+    *   [`sapscriptwizard_semantic.locator_helpers`](#module-sapscriptwizard_semanticlocator_helpers)
     *   [`sapscriptwizard.shell_table.ShellTable`](#class-sapscriptwizardshell_tableshelltable)
     *   [`sapscriptwizard.gui_tree.GuiTree`](#class-sapscriptwizardgui_treeguitree)
     *   [`sapscriptwizard.parallel.api.run_parallel`](#function-sapscriptwizardparallelapirun_parallel)
@@ -104,8 +104,8 @@ PyYAML # Для сохранения snapshot в YAML
 
 *   **`sapscriptwizard.Sapscript`**: Основной класс для инициализации и управления SAP GUI.
 *   **`sapscriptwizard.Window`**: Представляет окно сессии SAP и предоставляет методы для взаимодействия с его элементами.
-*   **`sapscriptwizard.element_finder.SapElementFinder`**: Внутренний класс, используемый `Window` для поиска элементов с помощью семантических локаторов.
-*   **`sapscriptwizard.locator_helpers`**: Содержит dataclass'ы для представления позиций элементов, информации об элементах и стратегий локаторов.
+*   **`sapscriptwizard_semantic.element_finder.SapElementFinder`**: Внутренний класс, используемый `Window` для поиска элементов с помощью семантических локаторов.
+*   **`sapscriptwizard_semantic.locator_helpers`**: Содержит dataclass'ы для представления позиций элементов, информации об элементах и стратегий локаторов.
 *   **`sapscriptwizard.shell_table.ShellTable`**: Класс для работы с таблицами SAP (ALV Grid, `GuiGridView`).
 *   **`sapscriptwizard.gui_tree.GuiTree`**: Класс для работы с древовидными структурами SAP (`GuiShell` типа "Tree").
 *   **`sapscriptwizard.parallel.api.run_parallel`**: Функция для запуска параллельного выполнения сценариев.
@@ -402,7 +402,7 @@ class Window:
 
 ---
 
-### Class `sapscriptwizard.element_finder.SapElementFinder`
+### Class `sapscriptwizard_semantic.element_finder.SapElementFinder`
 Этот класс отвечает за поиск элементов SAP GUI с использованием семантических локаторов. Обычно он используется внутренне классом `Window` и не требует прямого вызова разработчиком, но понимание его работы полезно.
 
 ```python
@@ -428,7 +428,7 @@ class SapElementFinder:
 
 ---
 
-### Module `sapscriptwizard.locator_helpers`
+### Module `sapscriptwizard_semantic.locator_helpers`
 Содержит dataclass'ы, используемые `SapElementFinder`.
 
 *   **`@dataclass(frozen=True) Position`**:
@@ -834,7 +834,7 @@ logging.basicConfig(
 
 # Если нужно более детальное логирование от конкретного модуля библиотеки:
 # logging.getLogger('sapscriptwizard.window').setLevel(logging.DEBUG)
-# logging.getLogger('sapscriptwizard.element_finder').setLevel(logging.DEBUG)
+# logging.getLogger('sapscriptwizard_semantic.element_finder').setLevel(logging.DEBUG)
 
 # ... остальной ваш код ...
 ```

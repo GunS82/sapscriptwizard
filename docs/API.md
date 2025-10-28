@@ -61,7 +61,7 @@ Key methods include:
 * `select_menu_item_by_name(menu_path)` – choose items by text from a menu hierarchy.
 * `start_transaction_robust(tcode)` – start a transaction with status bar checks.
 * Utility methods for scanning GUI structure (`dump_element_state`, `save_gui_snapshot`, etc.).
-* Locator-based helpers (`press_by_locator`, `write_by_locator`, etc.) resolve semantic descriptions using :class:`SapElementFinder`.
+* Locator-based helpers (`press_by_locator`, `write_by_locator`, etc.) resolve semantic descriptions using :class:`sapscriptwizard_semantic.element_finder.SapElementFinder`.
 
 ## `ShellTable`
 Represents a GuiShell/GuiGridView table and exposes data via `polars` or `pandas`.

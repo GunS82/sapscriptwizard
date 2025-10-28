@@ -1,5 +1,3 @@
-# --- START OF FILE: pysapscript/element_finder.py ---
-# (This is a new file)
 """Finds SAP GUI elements using label and position heuristics."""
 import win32com.client
 import logging
@@ -13,7 +11,7 @@ from .locator_helpers import (
     VLabelLocator, HLabelVLabelLocator, HLabelHLabelLocator
 )
 # Используем относительный импорт для исключений
-from .types_ import exceptions
+from sapscriptwizard.types_ import exceptions
 
 log = logging.getLogger(__name__)
 

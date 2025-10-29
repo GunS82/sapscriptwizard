@@ -1,5 +1,6 @@
 include README.md
-include setup.py
-recursive-include types_ *.py
-recursive-include utils *.py
-recursive-include parallel *.py
+include MIGRATION.md
+recursive-include docs *.md
+recursive-include examples *.py
+recursive-include sapscriptwizard *.py
+recursive-include tests *.py

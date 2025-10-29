@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=65", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sapscriptwizard"
+version = "1.0.0"
+description = "High level automation helpers for SAP GUI scripting"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "SAP Script Wizard Team" }]
+license = { text = "MIT" }
+dependencies = [
+  "pywin32; platform_system == 'Windows'",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest",
+  "ruff",
+  "mypy",
+]
+
+[tool.setuptools.packages.find]
+include = ["sapscriptwizard"]
+
+[tool.ruff]
+line-length = 100
+src = ["sapscriptwizard", "tests"]
+exclude = ["parallel", "types_", "utils"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B"]
+
+[tool.mypy]
+python_version = "3.10"
+strict = false
+packages = ["sapscriptwizard"]
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = "-ra"
+testpaths = ["tests"]

@@ -1,4 +1,1 @@
-pywin32
-pandas
-polars
-Pillow
+pywin32>=305; platform_system == 'Windows'

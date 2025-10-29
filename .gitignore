@@ -1,3 +1,5 @@
+__pycache__/
+*.pyc
 /.trae
 /HelpDocFromTracker.7z
-/__pycache__
+/.pytest_cache/
